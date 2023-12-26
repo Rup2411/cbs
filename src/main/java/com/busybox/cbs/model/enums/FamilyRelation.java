@@ -5,20 +5,20 @@ import java.util.List;
 
 public enum FamilyRelation {
 
-	Father,
-	Mother,
-	Son,
-	Daughter,
-	Spouse,
-	Husband,
-	Wife,
-	Brother,
-	Sister,
-	Daughter_In_law,
-	Brother_in_Law,
-	Grand_Daughter,
-	Grand_Son,
-	Other;
+	FATHER,
+	MOTHER,
+	SON,
+	DAUGHTER,
+	SPOUSE,
+	HUSBAND,
+	WIFE,
+	BROTHER,
+	SISTER,
+	DAUGHTER_IN_LAW,
+	BROTHER_IN_LAW,
+	GRAND_DAUGHTER,
+	GRAND_SON,
+	OTHER;
 	
 	public static List<FamilyRelation> listOfNamePrefix() {
         return Arrays.asList(FamilyRelation.values());

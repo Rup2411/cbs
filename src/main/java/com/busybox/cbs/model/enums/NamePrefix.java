@@ -6,11 +6,11 @@ import java.util.List;
 
 public enum NamePrefix {
 
-	Mr,
-	Ms,
-	Mrs,
-	Smt,
-	Md;
+	MR,
+	MS,
+	MRS,
+	SMT,
+	MD;
 	
 	public static List<NamePrefix> listOfNamePrefix() {
         return Arrays.asList(NamePrefix.values());

@@ -1,7 +1,6 @@
 package com.busybox.cbs.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,10 +12,13 @@ import com.busybox.cbs.model.enums.MaritalStatus;
 import com.busybox.cbs.model.enums.NamePrefix;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Data;
@@ -28,6 +30,12 @@ public class MemberDetails {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Fees_SettingDetails model2;
+
+    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private NomineeDetails model3;
 	
 	private boolean verifyWith;
 	private LocalDateTime registrationDate;

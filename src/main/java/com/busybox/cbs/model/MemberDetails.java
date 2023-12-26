@@ -31,10 +31,10 @@ public class MemberDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToOne(mappedBy = "model1", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Fees_SettingDetails model2;
 
-    @OneToOne(mappedBy = "model1", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private NomineeDetails model3;
 	
 	private boolean verifyWith;

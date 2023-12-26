@@ -30,10 +30,10 @@ public class Fees_SettingDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	 @OneToOne
-	    @MapsId
-	    @JoinColumn(name = "id")
-	    private MemberDetails mapid;
+	@OneToOne
+	@MapsId
+	@JoinColumn(name = "id")
+	private MemberDetails mapid;
 	
 	private BigDecimal memberFees;
 	

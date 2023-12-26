@@ -1,12 +1,14 @@
 package com.busybox.cbs.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.busybox.cbs.dao.SavingPlanMasterRepo;
 import com.busybox.cbs.dto.SavingPlanMasterDto;
 import com.busybox.cbs.model.SavingPlanMaster;
 import com.busybox.cbs.service.SavingPlanMasterService;
 
+@Service
 public class ServicePlanMasterImpl implements SavingPlanMasterService {
 
 	
@@ -44,7 +46,7 @@ public class ServicePlanMasterImpl implements SavingPlanMasterService {
         entity.setMonthlyAvgBalance(dto.getMonthlyAvgBalance());
         entity.setLockInBalance(dto.getLockInBalance());
         entity.setSmsCharges(dto.getSmsCharges());
-        entity.setServiceInterval(dto.getServiceInterval());
+        entity.setSmsInterval(dto.getSmsInterval());
         entity.setFreeIFSCCollectionPerMonth(dto.getFreeIFSCCollectionPerMonth());
         entity.setFreeTransfersPerMonth(dto.getFreeTransfersPerMonth());
         entity.setSingleTransactionLimit(dto.getSingleTransactionLimit());
@@ -67,7 +69,7 @@ public class ServicePlanMasterImpl implements SavingPlanMasterService {
         entity.setMonthlyAvgBalance(dto.getMonthlyAvgBalance());
         entity.setLockInBalance(dto.getLockInBalance());
         entity.setSmsCharges(dto.getSmsCharges());
-        entity.setServiceInterval(dto.getServiceInterval());
+        entity.setSmsInterval(dto.getSmsInterval());
         entity.setFreeIFSCCollectionPerMonth(dto.getFreeIFSCCollectionPerMonth());
         entity.setFreeTransfersPerMonth(dto.getFreeTransfersPerMonth());
         entity.setSingleTransactionLimit(dto.getSingleTransactionLimit());
@@ -91,7 +93,7 @@ public class ServicePlanMasterImpl implements SavingPlanMasterService {
         dto.setMonthlyAvgBalance(entity.getMonthlyAvgBalance());
         dto.setLockInBalance(entity.getLockInBalance());
         dto.setSmsCharges(entity.getSmsCharges());
-        dto.setServiceInterval(entity.getServiceInterval());
+        dto.setSmsInterval(entity.getSmsInterval());
         dto.setFreeIFSCCollectionPerMonth(entity.getFreeIFSCCollectionPerMonth());
         dto.setFreeTransfersPerMonth(entity.getFreeTransfersPerMonth());
         dto.setSingleTransactionLimit(entity.getSingleTransactionLimit());

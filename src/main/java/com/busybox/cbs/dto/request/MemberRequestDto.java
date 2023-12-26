@@ -7,7 +7,7 @@ import com.busybox.cbs.model.NomineeDetails;
 import lombok.Data;
 
 @Data
-public class merchantRequestDto {
+public class MemberRequestDto {
 
 	private MemberDetails memberDetails;
 	

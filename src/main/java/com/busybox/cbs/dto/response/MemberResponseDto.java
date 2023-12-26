@@ -3,7 +3,7 @@ package com.busybox.cbs.dto.response;
 import lombok.Data;
 
 @Data
-public class MerchantResponseDto {
+public class MemberResponseDto {
 
 	private String Status;
 	

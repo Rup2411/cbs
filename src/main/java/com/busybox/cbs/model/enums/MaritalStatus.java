@@ -5,12 +5,12 @@ import java.util.List;
 
 public enum MaritalStatus {
 
-	Married,
-	Seperated,
-	Divorced, 
-	Widowed,
-	Unmarried,
-	Single;
+	MARRIED,
+	SEPERATED,
+	DIVORCED, 
+	WIDOWED,
+	UNMARRIED,
+	SINGLE;
 	
 	public static List<MaritalStatus> listOfNamePrefix() {
         return Arrays.asList(MaritalStatus.values());

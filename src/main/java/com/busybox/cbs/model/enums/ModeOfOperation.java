@@ -5,9 +5,9 @@ import java.util.List;
 
 public enum ModeOfOperation {
 
-	Single,
-	Joint,
-	Survivor;
+	SINGLE,
+	JOINT,
+	SURVIOR;
 	
 	public static List<ModeOfOperation> listOfNamePrefix() {
         return Arrays.asList(ModeOfOperation.values());

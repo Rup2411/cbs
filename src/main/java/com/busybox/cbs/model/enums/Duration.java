@@ -7,7 +7,7 @@ public enum Duration {
 
 	MONTHLY,
     QUARTERLY,
-    HalfYearly,
+    HALFYEARLY,
     ANNUALLY;
 
     public static List<Duration> listOfNamePrefix() {

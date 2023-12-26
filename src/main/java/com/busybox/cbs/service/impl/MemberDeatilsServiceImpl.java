@@ -9,41 +9,70 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.busybox.cbs.dao.MemberDetailsRepo;
+import com.busybox.cbs.dto.request.MemberRequestDto;
+import com.busybox.cbs.dto.response.MemberResponseDto;
 import com.busybox.cbs.exception.DeatilsNullOrMissingException;
+import com.busybox.cbs.model.Fees_SettingDetails;
 import com.busybox.cbs.model.MemberDetails;
+import com.busybox.cbs.model.NomineeDetails;
+import com.busybox.cbs.service.MemberDeatilsService;
 import com.busybox.cbs.service.ProjectService;
-import com.busybox.cbs.service.impl.helper.MemberDetailsHelper;
+import com.busybox.cbs.service.impl.helper.MemberDetailsAddHelper;
 
 @Service
-public class MemberDeatilsServiceImpl implements ProjectService<MemberDetails, Long> {
-
-	@Autowired private MemberDetailsHelper memberDetailsHelper;
-	@Autowired private MemberDetailsRepo memberDetailsRepo;
+public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto, Long>,
+												 MemberDeatilsService 
+												 {
+	@Autowired private AddMember addMember;
+	@Autowired private MemberDetailsAddHelper memberDetailsAddHelper;
+	
+	
 	
 	
 	@Override
-	public List<MemberDetails> getAll() {
+	public List<MemberRequestDto> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Optional<MemberDetails> getById(Long id) {
+	public Optional<MemberRequestDto> getById(Long id) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
-	public MemberDetails create(MemberDetails entity) {
-		if(entity==null) throw new DeatilsNullOrMissingException("Member Deatils Missing");
-		// verifying all the required entries, checking for any duplicates
-		memberDetailsHelper.allInfoRequiedTrue(entity);
-		
-		return memberDetailsRepo.save(entity);
+	public MemberResponseDto addMembersFinal(MemberRequestDto memberRequestDto) {
+
+		memberRequestDto.validateAndExtractDetails(
+		        memberDetails -> memberDetailsAddHelper.validateAllInfoRequired(memberDetails, 
+		                                                                       memberRequestDto.getNomineeDetails(), 
+		                                                                       memberRequestDto.getFees_SettingDetails()),
+		        nomineeDetails -> {}, 
+		        fees_SettingDetails -> {} 
+		    );
+	    try {
+	        addMember.saveMemberWithDetails(
+	            memberRequestDto.getMemberDetails(),
+	            memberRequestDto.getNomineeDetails(),
+	            memberRequestDto.getFees_SettingDetails()
+	        );
+	        return new MemberResponseDto("Success", "Yes", null);
+
+	    } catch (Exception e) {
+	        return new MemberResponseDto("Failure", "No", e.getMessage());
+	    }
 	}
 
 	@Override
-	public MemberDetails update(Long id, MemberDetails entity) {
+	public void create(MemberRequestDto entity) {
+	    if (entity == null) throw new DeatilsNullOrMissingException("Member Details Missing", "");
+	    addMembersFinal(entity);
+	}
+
+
+	@Override
+	public MemberRequestDto update(Long id, MemberRequestDto entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -55,13 +84,13 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberDetails, L
 	}
 
 	@Override
-	public Page<MemberDetails> findAllPaginated(Pageable pageable) {
+	public Page<MemberRequestDto> findAllPaginated(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<MemberDetails> search(String query) {
+	public List<MemberRequestDto> search(String query) {
 		// TODO Auto-generated method stub
 		return null;
 	}

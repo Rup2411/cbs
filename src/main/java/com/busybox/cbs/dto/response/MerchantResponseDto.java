@@ -1,0 +1,13 @@
+package com.busybox.cbs.dto.response;
+
+import lombok.Data;
+
+@Data
+public class MerchantResponseDto {
+
+	private String Status;
+	
+	private String isSuccessfull;
+	
+	private String ErrorMessageIfAny;
+}

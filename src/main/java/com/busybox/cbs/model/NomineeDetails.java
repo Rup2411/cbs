@@ -27,11 +27,17 @@ public class NomineeDetails {
 	private long id;
 	
 	private String Name;
+	
 	private FamilyRelation nomineeRelation;
+
 	private String Address;
+	
 	private String kycNumber;
+	
 	private String MobileNumber;
+	
 	private String Age;
+	
 	private NomineeKYCType kycType;
 	
 	

@@ -2,8 +2,8 @@ package com.busybox.cbs.model.enums;
 
 public enum NomineeKYCType {
 
-	Aadhar,
-	Voter,
-	Ration_Card,
-	Driving_License;
+	AADHAR,
+	VOTER,
+	RATION_CARD,
+	DRIVING_LICENSE;
 }

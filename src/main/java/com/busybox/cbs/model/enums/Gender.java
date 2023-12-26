@@ -5,8 +5,8 @@ import java.util.List;
 
 public enum Gender {
 
-	Male,
-	Female;
+	MALE,
+	FEMALE;
 	
 	public static List<Gender> listOfNamePrefix() {
         return Arrays.asList(Gender.values());

@@ -36,13 +36,13 @@ public class MemberDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-//	@JsonIgnore
-//	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private Fees_SettingDetails model2;
-//
-//	@JsonIgnore
-//    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private NomineeDetails model3;
+	@JsonIgnore
+	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Fees_SettingDetails model2;
+
+	@JsonIgnore
+    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private NomineeDetails model3;
 	
 	private boolean verifyWith;
 	private LocalDateTime registrationDate;

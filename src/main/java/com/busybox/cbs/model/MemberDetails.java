@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.busybox.cbs.exception.CustomException;
 import com.busybox.cbs.exception.ValidationException;
 import com.busybox.cbs.model.enums.FamilyRelation;
 import com.busybox.cbs.model.enums.Gender;
@@ -35,11 +36,13 @@ public class MemberDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private Fees_SettingDetails model2;
-
-    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private NomineeDetails model3;
+//	@JsonIgnore
+//	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private Fees_SettingDetails model2;
+//
+//	@JsonIgnore
+//    @OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private NomineeDetails model3;
 	
 	private boolean verifyWith;
 	private LocalDateTime registrationDate;
@@ -53,7 +56,7 @@ public class MemberDetails {
 	private LocalDateTime dateofBirth;
 	private MaritalStatus maritalStatus;
 	
-	private String Address;
+	private String address;
 	private String district ;
 	private String state ;
 	
@@ -88,6 +91,15 @@ public class MemberDetails {
     @JsonIgnore
     private String UpdatedBy;
 	
+    //------------------------------------------------------------------------------------
+    @OneToOne(mappedBy = "memberDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private NomineeDetails nomineeDetails;
+
+    @OneToOne(mappedBy = "memberDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Fees_SettingDetails feesSettingDetails;
+    //------------------------------------------------------------------------------------
+
+    
 	public void setPinCode(String pinCode) {
         if (!pinCode.matches("\\d{6}")) {
             throw new ValidationException("Pin Code should be exactly 6 digits");
@@ -97,7 +109,7 @@ public class MemberDetails {
 
     public void setAadharNumber(String aadharNumber) {
         if (!aadharNumber.matches("^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$")) {
-            throw new ValidationException("Aadhar Number should be 12 digits and not start with 0 or 1");
+            throw new CustomException("Aadhar Number should be 12 digits and not start with 0 or 1");
         }
         this.aadharNumber = aadharNumber;
     }

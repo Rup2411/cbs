@@ -39,6 +39,11 @@ public class Fees_SettingDetails {
 	private long id;
 	
 	@OneToOne
+    @JoinColumn(name = "member_id")
+    private MemberDetails memberDetails;
+	
+	@JsonIgnore
+	@OneToOne
 	@MapsId
 	@JoinColumn(name = "id")
 	private MemberDetails mapid;

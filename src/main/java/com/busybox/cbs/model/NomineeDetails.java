@@ -34,11 +34,16 @@ public class NomineeDetails {
 	private long id;
 	
 	@OneToOne
+    @JoinColumn(name = "member_id")
+    private MemberDetails memberDetails;
+	
+	@JsonIgnore
+	@OneToOne
     @MapsId
     @JoinColumn(name = "id")
     private MemberDetails mapid;
 	
-	private String Name;
+	private String name;
 	
 	private FamilyRelation nomineeRelation;
 
@@ -46,13 +51,11 @@ public class NomineeDetails {
 	
 	private String kycNumber;
 	
-	private String MobileNumber;
+	private String mobileNumber;
 	
-	private String Age;
+	private String age;
 	
 	private NomineeKYCType kycType;
-	
-	
 	
 	// Date time created on/ updated on
 		@JsonIgnore

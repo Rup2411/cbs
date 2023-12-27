@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.busybox.cbs.model.enums.FamilyRelation;
 import com.busybox.cbs.model.enums.ModeOfOperation;
-import com.busybox.cbs.model.enums.PaymentBy;
+import com.busybox.cbs.model.enums.PaymentMethods;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +41,7 @@ public class SavingsDetailsDto {
 
     // Fields from PaymentDetails
     private long paymentId;
-    private PaymentBy paymentBy;
+    private PaymentMethods paymentBy;
     private String remarks;
     private boolean accountStatus;
     private boolean smsSend;

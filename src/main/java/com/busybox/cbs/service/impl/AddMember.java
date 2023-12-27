@@ -1,5 +1,7 @@
 package com.busybox.cbs.service.impl;
 
+import java.math.BigInteger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +29,15 @@ public class AddMember {
                                         NomineeDetails nomineeDetails,
                                         Fees_SettingDetails feesSettingDetails ) {
 		try {
-
+			
 			memberDetailsRepo.save(memberDetails);
-
+			BigInteger PUBLIC_MEMBER_ID = memberDetails.getPublicMemberId();
 	        feesSettingDetails.setMapid(memberDetails);
+	        feesSettingDetails.setPublicMemberId(PUBLIC_MEMBER_ID);
 	        fees_SettingDetailsRepo.save(feesSettingDetails);
 
 	        nomineeDetails.setMapid(memberDetails);
+	        nomineeDetails.setPublicMemberId(PUBLIC_MEMBER_ID);
 	        nomineeDetailsRepo.save(nomineeDetails);
 //	        return null;
 	    

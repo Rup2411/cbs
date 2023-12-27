@@ -16,6 +16,7 @@ import com.busybox.cbs.dto.request.MemberRequestDto;
 import com.busybox.cbs.dto.response.MemberResponseDto;
 import com.busybox.cbs.exception.CustomException;
 import com.busybox.cbs.exception.DeatilsNullOrMissingException;
+import com.busybox.cbs.exception.FailedToRetrieveDataException;
 import com.busybox.cbs.model.Fees_SettingDetails;
 import com.busybox.cbs.model.MemberDetails;
 import com.busybox.cbs.model.NomineeDetails;
@@ -35,9 +36,10 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 	
 	@Override
 	public List<MemberRequestDto> getAll() {
+	    List<MemberRequestDto> dtos = new ArrayList<>();
+
 	    try {
 	        List<MemberDetails> members = memberDetailsRepo.findAll();
-	        List<MemberRequestDto> dtos = new ArrayList<>();
 
 	        for (MemberDetails member : members) {
 	            MemberRequestDto dto = new MemberRequestDto();
@@ -47,20 +49,17 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 	            if (nomineeOpt.isPresent()) {
 	                dto.setNomineeDetails(nomineeOpt.get()); // Get the NomineeDetails if present
 	            }
-
 	            Optional<Fees_SettingDetails> feesOpt = fees_SettingDetailsRepo.findById(member.getId());
 	            if (feesOpt.isPresent()) {
 	                dto.setFees_SettingDetails(feesOpt.get()); // Get the Fees_SettingDetails if present
 	            }
-
 	            dtos.add(dto);
 	        }
-
-
-	        return dtos;
 	    } catch (Exception e) {
-	        throw new CustomException("No Data Found");
+	        throw new CustomException("Failed to fetch data");
 	    }
+
+	    return dtos;
 	}
 
 
@@ -123,38 +122,14 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 		return null;
 	}
 
-	@Override
-	public List<?> getAllMembers() {
-		List<?> response = memberDetailsRepo.findAll();
-		return response;
-	}
 
 	@Override
-	public List<MemberRequestDto> findAllDetails() {
-	    List<MemberRequestDto> dtos = new ArrayList<>();
-
-	    try {
-	        List<MemberDetails> members = memberDetailsRepo.findAll();
-
-	        for (MemberDetails member : members) {
-	            MemberRequestDto dto = new MemberRequestDto();
-	            dto.setMemberDetails(member);
-
-	            Optional<NomineeDetails> nomineeOpt = nomineeDetailsRepo.findById(member.getId());
-	            if (nomineeOpt.isPresent()) {
-	                dto.setNomineeDetails(nomineeOpt.get()); // Get the NomineeDetails if present
-	            }
-	            Optional<Fees_SettingDetails> feesOpt = fees_SettingDetailsRepo.findById(member.getId());
-	            if (feesOpt.isPresent()) {
-	                dto.setFees_SettingDetails(feesOpt.get()); // Get the Fees_SettingDetails if present
-	            }
-	            dtos.add(dto);
-	        }
-	    } catch (Exception e) {
-	        throw new CustomException("Failed to fetch data");
-	    }
-
-	    return dtos;
+	public List<MemberDetails> findAllMembers() {
+		try {
+			return memberDetailsRepo.findAll();
+		} catch (Exception e) {
+			throw new FailedToRetrieveDataException(null);
+		}
 	}
 
 }

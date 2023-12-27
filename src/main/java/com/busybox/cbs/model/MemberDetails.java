@@ -1,5 +1,6 @@
 package com.busybox.cbs.model;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,15 +12,18 @@ import com.busybox.cbs.model.enums.FamilyRelation;
 import com.busybox.cbs.model.enums.Gender;
 import com.busybox.cbs.model.enums.MaritalStatus;
 import com.busybox.cbs.model.enums.NamePrefix;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PostPersist;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -35,6 +39,9 @@ public class MemberDetails {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name = "public_member_id")
+	private BigInteger publicMemberId;
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "mapid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -140,5 +147,11 @@ public class MemberDetails {
             throw new ValidationException("Email ID is not valid");
         }
         this.emailId = emailId;
+    }
+    
+    @PostPersist
+    public void setPublicMemberId() {
+        // Assuming 1000000 is added to the generated ID
+        this.publicMemberId = BigInteger.valueOf(1000000 + this.id);
     }
 }

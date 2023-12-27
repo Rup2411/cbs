@@ -1,5 +1,6 @@
 package com.busybox.cbs.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,10 +70,22 @@ public class MemberController {
 	 @GetMapping("getall")
 	 public ResponseEntity<?> getAllMerchants(){
 		 try {
-			 List<?> response = memberDetailsService.findAllDetails();
+			 List<?> response = memberDetailsService.findAllMembers();
 			 return ResponseHandler.generateResponse(response, HttpStatus.OK, "Data fetched");
 		 } catch (Exception e) {
 			 return ResponseHandler.generateResponse(e.getMessage(), HttpStatus.BAD_REQUEST, "Failed to load data");
+		 }
+	 }
+	 
+	 @GetMapping("get/public-id")
+	 public ResponseEntity<?> getAllPublicId(){
+		 try {
+			 return null;
+//			List<BigInteger> response=  memberDetailsService.getAllPublicId();
+//			return ResponseHandler.generateResponse(response, HttpStatus.OK, "");
+		 } catch (Exception e) {
+			// TODO: handle exception
+		return null;
 		 }
 	 }
 

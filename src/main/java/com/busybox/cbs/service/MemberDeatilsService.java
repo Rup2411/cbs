@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 
 import com.busybox.cbs.dto.request.MemberRequestDto;
 import com.busybox.cbs.dto.response.MemberResponseDto;
+import com.busybox.cbs.model.MemberDetails;
 // response
 @Component
 public interface MemberDeatilsService {
 
 	public MemberResponseDto addMembersFinal(MemberRequestDto memberRequestDto);
 	
-	public List<?> getAllMembers();
 	
-	public List<MemberRequestDto> findAllDetails();
+	public List<MemberDetails> findAllMembers();
 }

@@ -35,15 +35,12 @@ public class MemberDetailsAddHelper {
         	throw new DeatilsNullOrMissingException("Member Name is required");
         }
         if (details.getDateofBirth() == null) {
-        	System.err.println("checking");
         	throw new DeatilsNullOrMissingException("Date Of Birth is required");
         }
         if (details.getAddress() == null) {
-        	System.err.println("checking");
         	throw new DeatilsNullOrMissingException("Address is required");
         }
         if (details.getDistrict() == null) {
-        	System.err.println("checking");
         	throw new DeatilsNullOrMissingException("District is required");
         }
         if (details.getState() == null) {
@@ -96,7 +93,6 @@ public class MemberDetailsAddHelper {
     	if (details.getShareAmount()== null) {
     		throw new DeatilsNullOrMissingException("Share Amount is required");
     	}
-    	
     	return true;
     }
 }

@@ -72,7 +72,6 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 
 	@Override
 	public MemberResponseDto addMembersFinal(MemberRequestDto memberRequestDto) {
-
 		memberRequestDto.validateAndExtractDetails(
 		        memberDetails -> memberDetailsAddHelper.validateAllInfoRequired(memberDetails, 
 		                                                                       memberRequestDto.getNomineeDetails(), 
@@ -135,21 +134,16 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 	    List<MemberRequestDto> dtos = new ArrayList<>();
 
 	    try {
-	        // Fetch all member details
 	        List<MemberDetails> members = memberDetailsRepo.findAll();
 
 	        for (MemberDetails member : members) {
 	            MemberRequestDto dto = new MemberRequestDto();
 	            dto.setMemberDetails(member);
 
-	            // Assuming that NomineeDetails and Fees_SettingDetails are fetched lazily, they should be automatically fetched when accessed due to the open session in view pattern.
-	            // If not, you will need to explicitly fetch them using their respective repositories.
-//	            dto.setNomineeDetails(member.getNomineeDetails());
 	            Optional<NomineeDetails> nomineeOpt = nomineeDetailsRepo.findById(member.getId());
 	            if (nomineeOpt.isPresent()) {
 	                dto.setNomineeDetails(nomineeOpt.get()); // Get the NomineeDetails if present
 	            }
-//	            dto.setFees_SettingDetails(member.getFeesSettingDetails());
 	            Optional<Fees_SettingDetails> feesOpt = fees_SettingDetailsRepo.findById(member.getId());
 	            if (feesOpt.isPresent()) {
 	                dto.setFees_SettingDetails(feesOpt.get()); // Get the Fees_SettingDetails if present

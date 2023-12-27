@@ -15,8 +15,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SavingsDetailsDto {
 
-	private long savingId;
+	private long id;
     private LocalDateTime openingDate;
+    
+    
+    private long memberId; // Corresponds to selectByMember in SavingDetails
     private String memberName;
     private LocalDateTime dateOfBirth;
     private String relativeName;
@@ -30,20 +33,11 @@ public class SavingsDetailsDto {
     private String jointSurvivorCode;
     private String jointSurvivorName;
     private FamilyRelation relation;
+    
+    
+    private long planId; // Corresponds to selectPlan in SavingDetails
     private double openingAmount;
     private String advisorCollectorCode;
     private String advisorCollectorName;
     private double openingFees;
-    
-    // Add references to MemberDetails and SavingPlanMaster if needed
-    // private MemberDetailsDto memberDetails;
-    // private SavingPlanMasterDto savingPlan;
-
-    // Fields from PaymentDetails
-    private long paymentId;
-    private PaymentMethods paymentBy;
-    private String remarks;
-    private boolean accountStatus;
-    private boolean smsSend;
-    private boolean debitCardIssue;
 }

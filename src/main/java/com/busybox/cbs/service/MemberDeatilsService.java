@@ -1,6 +1,8 @@
 package com.busybox.cbs.service;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -15,4 +17,10 @@ public interface MemberDeatilsService {
 	
 	
 	public List<MemberDetails> findAllMembers();
+
+
+	public List<BigInteger> getAllPublicId();
+
+
+	public Optional<MemberDetails> getMerchantById(BigInteger publicId);
 }

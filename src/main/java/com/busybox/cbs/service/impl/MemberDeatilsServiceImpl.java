@@ -1,5 +1,6 @@
 package com.busybox.cbs.service.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +67,7 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 	@Override
 	public Optional<MemberRequestDto> getById(Long id) {
 		// TODO Auto-generated method stub
+		
 		return Optional.empty();
 	}
 
@@ -128,8 +130,24 @@ public class MemberDeatilsServiceImpl implements ProjectService<MemberRequestDto
 		try {
 			return memberDetailsRepo.findAll();
 		} catch (Exception e) {
-			throw new FailedToRetrieveDataException(null);
+			throw new FailedToRetrieveDataException(e.getMessage());
 		}
+	}
+
+
+	@Override
+	public List<BigInteger> getAllPublicId() {
+		try {
+			return memberDetailsRepo.findAllPublicId();
+		} catch (Exception e) {
+			throw new FailedToRetrieveDataException(e.getMessage());
+		}
+	}
+
+
+	@Override
+	public Optional<MemberDetails> getMerchantById(BigInteger publicId) {
+		return memberDetailsRepo.findAllPublicId(publicId);
 	}
 
 }
